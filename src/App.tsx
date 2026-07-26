@@ -128,6 +128,17 @@ export default function App() {
               TUM, with professional software engineering experience and a
               focus on 3D machine learning and computer vision.
             </p>
+            <p className="hero-about">
+              My work sits between machine learning research and software
+              engineering. I enjoy understanding methods from first principles,
+              turning them into working systems, and building the tools needed
+              to compare and debug results.
+            </p>
+            <ul className="skill-list" aria-label="Selected skills">
+              {skills.map((skill) => (
+                <li key={skill}>{skill}</li>
+              ))}
+            </ul>
             <div className="link-row">
               <a
                 className="primary-link"
@@ -145,44 +156,6 @@ export default function App() {
                 LinkedIn ↗
               </a>
             </div>
-          </div>
-          <aside className="currently">
-            <p className="section-label">Currently</p>
-            <h2>Master&apos;s thesis</h2>
-            <p>
-              Developing anatomy-aware methods for completing lumbar spine
-              geometry from sparse, partial 3D observations.
-            </p>
-            <dl>
-              <div>
-                <dt>Based in</dt>
-                <dd>Munich, Germany</dd>
-              </div>
-              <div>
-                <dt>Focus</dt>
-                <dd>3D ML · Computer Vision</dd>
-              </div>
-            </dl>
-          </aside>
-        </section>
-
-        <section className="section container about-section">
-          <div>
-            <p className="section-label">About</p>
-            <h2>Research-minded, engineering-focused.</h2>
-          </div>
-          <div className="about-text">
-            <p>
-              My work sits between machine learning research and software
-              engineering. I enjoy understanding methods from first principles,
-              turning them into working systems, and building the tools needed
-              to compare and debug results.
-            </p>
-            <ul className="skill-list" aria-label="Selected skills">
-              {skills.map((skill) => (
-                <li key={skill}>{skill}</li>
-              ))}
-            </ul>
           </div>
         </section>
 
@@ -214,9 +187,9 @@ export default function App() {
               generative modeling, and visual navigation.
             </p>
           </div>
-          <div className="project-grid">
+          <div className="project-list">
             {projects.map((project) => {
-              const card = (
+              const projectContent = (
                 <>
                   <p className="project-context">{project.context}</p>
                   <h3>{project.title}</h3>
@@ -234,17 +207,31 @@ export default function App() {
 
               return project.href ? (
                 <a
-                  className="project-card linked-card"
+                  className="project-row linked-card"
                   href={project.href}
                   target="_blank"
                   rel="noreferrer"
                   key={project.title}
                 >
-                  {card}
+                  <div className="project-copy">{projectContent}</div>
+                  <div
+                    className="project-media"
+                    role="img"
+                    aria-label={`${project.title} image placeholder`}
+                  >
+                    <span>Project image</span>
+                  </div>
                 </a>
               ) : (
-                <article className="project-card" key={project.title}>
-                  {card}
+                <article className="project-row" key={project.title}>
+                  <div className="project-copy">{projectContent}</div>
+                  <div
+                    className="project-media"
+                    role="img"
+                    aria-label={`${project.title} image placeholder`}
+                  >
+                    <span>Project image</span>
+                  </div>
                 </article>
               );
             })}
